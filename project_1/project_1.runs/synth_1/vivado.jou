@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Tue Apr  1 10:55:57 2025
+# Process ID: 19592
+# Current directory: C:/Users/kccistc/Desktop/Test by_1/project_1/project_1.runs/synth_1
+# Command line: vivado.exe -log top_module.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_module.tcl
+# Log file: C:/Users/kccistc/Desktop/Test by_1/project_1/project_1.runs/synth_1/top_module.vds
+# Journal file: C:/Users/kccistc/Desktop/Test by_1/project_1/project_1.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source top_module.tcl -notrace
