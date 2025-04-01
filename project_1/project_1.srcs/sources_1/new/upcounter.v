@@ -1,6 +1,6 @@
 // Up/Down Counter with FND Display (0000-9999)
 // Clock divider generates 0.1 second interval
-// MODE 0: Up Counter, MODE 1: Down Counter
+// MODE 0: Up Counter (0,1,2,...)
 // Resets and starts counting automatically when power is applied
 
 module updown_counter(
@@ -21,11 +21,28 @@ module updown_counter(
     reg [3:0] digit1, digit2, digit3, digit4; // 4 digits for 0000-9999
     reg [3:0] display_digit;
     reg [1:0] digit_sel;
+    reg [16:0] fnd_cnt; // 변수 먼저 선언
     reg mode;
+    reg mode_sw_reg1, mode_sw_reg2;
+    
+    // Initial values
+    initial begin
+        clk_cnt <= 0;
+        clk_100ms <= 0;
+        digit1 <= 0;
+        digit2 <= 0;
+        digit3 <= 0;
+        digit4 <= 0;
+        fnd_cnt <= 0;
+        digit_sel <= 0;
+        mode_sw_reg1 <= 0;
+        mode_sw_reg2 <= 0;
+        mode <= 0;
+    end
     
     // Clock divider - generates 0.1 second clock
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk or posedge rst_n) begin
+        if (rst_n) begin
             clk_cnt <= 0;
             clk_100ms <= 0;
         end else begin
@@ -39,10 +56,8 @@ module updown_counter(
     end
     
     // Mode switch handling with debounce
-    reg mode_sw_reg1, mode_sw_reg2;
-    
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk or posedge rst_n) begin
+        if (rst_n) begin
             mode_sw_reg1 <= 0;
             mode_sw_reg2 <= 0;
             mode <= 0;
@@ -54,66 +69,40 @@ module updown_counter(
     end
     
     // Counter logic
-    always @(posedge clk_100ms or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk_100ms or posedge rst_n) begin
+        if (rst_n) begin
             digit1 <= 0;
             digit2 <= 0;
             digit3 <= 0;
             digit4 <= 0;
-        end else begin
-            if (mode == 0) begin
-                // Up counting mode
-                if (digit1 == 9) begin
-                    digit1 <= 0;
-                    if (digit2 == 9) begin
-                        digit2 <= 0;
-                        if (digit3 == 9) begin
-                            digit3 <= 0;
-                            if (digit4 == 9) begin
-                                digit4 <= 0;
-                            end else begin
-                                digit4 <= digit4 + 1;
-                            end
+        end else if (!mode_sw) begin  // 스위치가 0일 때만 업카운터 동작
+            // Up counting mode
+            if (digit1 == 9) begin
+                digit1 <= 0;
+                if (digit2 == 9) begin
+                    digit2 <= 0;
+                    if (digit3 == 9) begin
+                        digit3 <= 0;
+                        if (digit4 == 9) begin
+                            digit4 <= 0;
                         end else begin
-                            digit3 <= digit3 + 1;
+                            digit4 <= digit4 + 1;
                         end
                     end else begin
-                        digit2 <= digit2 + 1;
+                        digit3 <= digit3 + 1;
                     end
                 end else begin
-                    digit1 <= digit1 + 1;
+                    digit2 <= digit2 + 1;
                 end
             end else begin
-                // Down counting mode
-                if (digit1 == 0) begin
-                    digit1 <= 9;
-                    if (digit2 == 0) begin
-                        digit2 <= 9;
-                        if (digit3 == 0) begin
-                            digit3 <= 9;
-                            if (digit4 == 0) begin
-                                digit4 <= 9;
-                            end else begin
-                                digit4 <= digit4 - 1;
-                            end
-                        end else begin
-                            digit3 <= digit3 - 1;
-                        end
-                    end else begin
-                        digit2 <= digit2 - 1;
-                    end
-                end else begin
-                    digit1 <= digit1 - 1;
-                end
+                digit1 <= digit1 + 1;
             end
         end
     end
     
     // FND display multiplexing - cycles through digits at high frequency
-    reg [16:0] fnd_cnt;
-    
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk or posedge rst_n) begin
+        if (rst_n) begin
             fnd_cnt <= 0;
             digit_sel <= 0;
         end else begin

@@ -15,44 +15,27 @@ module top_module(
     wire [3:0] up_counter_sel;
     wire [6:0] down_counter_seg;
     wire [3:0] down_counter_sel;
-    reg rst_n_up, rst_n_down;
-    
-    // Reset control logic for immediate mode change
-    always @(posedge clk) begin
-        if (!rst_n) begin
-            // Global reset active
-            rst_n_up <= 0;
-            rst_n_down <= 0;
-        end else if (mode_sw) begin
-            // Down counter mode
-            rst_n_up <= 0;    // Keep up counter in reset
-            rst_n_down <= 1;  // Enable down counter
-        end else begin
-            // Up counter mode
-            rst_n_up <= 1;    // Enable up counter
-            rst_n_down <= 0;  // Keep down counter in reset
-        end
-    end
     
     // Instantiate the up/down counter module
     updown_counter #(
-        .CLK_FREQ(50_000_000),  // 50 MHz default (adjust based on your board)
+        .CLK_FREQ(50_000_000),  // 50 MHz default
         .COUNT_FREQ(10)         // 0.1 second interval
     ) up_counter_inst (
         .clk(clk),
-        .rst_n(rst_n_up),
-        .mode_sw(1'b0),         // Fixed to Up counter mode
+        .rst_n(rst_n),
+        .mode_sw(mode_sw),      // Pass the mode switch directly
         .fnd_seg(up_counter_seg),
         .fnd_sel(up_counter_sel)
     );
     
     // Instantiate the down counter module
     down_counter #(
-        .CLK_FREQ(50_000_000),  // 50 MHz default (adjust based on your board)
+        .CLK_FREQ(50_000_000),  // 50 MHz default
         .COUNT_FREQ(10)         // 0.1 second interval
     ) down_counter_inst (
         .clk(clk),
-        .rst_n(rst_n_down),
+        .rst_n(rst_n),
+        .mode_sw(mode_sw),      // Pass the mode switch directly
         .fnd_seg(down_counter_seg),
         .fnd_sel(down_counter_sel)
     );

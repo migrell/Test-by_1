@@ -1,10 +1,11 @@
-// Down Counter with FND Display (0000-9999)
+// Down Counter with FND Display (9999-0000)
 // Clock divider generates 0.1 second interval
-// Resets and starts counting down automatically when power is applied
+// Counts down from 9999 to 0000 and wraps back to 9999
 
 module down_counter(
     input wire clk,         // System Clock (ex: 50MHz)
     input wire rst_n,       // Active-Low Reset
+    input wire mode_sw,     // Mode Switch Input (0:Up, 1:Down)
     output reg [6:0] fnd_seg, // 7-Segment Data
     output reg [3:0] fnd_sel  // 7-Segment Select
 );
@@ -19,10 +20,23 @@ module down_counter(
     reg [3:0] digit1, digit2, digit3, digit4; // 4 digits for 9999-0000
     reg [3:0] display_digit;
     reg [1:0] digit_sel;
+    reg [16:0] fnd_cnt; // 변수 먼저 선언
+    
+    // Initial values - starting from 9999 for down counter
+    initial begin
+        clk_cnt <= 0;
+        clk_100ms <= 0;
+        digit1 <= 9;
+        digit2 <= 9;
+        digit3 <= 9;
+        digit4 <= 9;
+        fnd_cnt <= 0;
+        digit_sel <= 0;
+    end
     
     // Clock divider - generates 0.1 second clock
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk or posedge rst_n) begin
+        if (rst_n) begin
             clk_cnt <= 0;
             clk_100ms <= 0;
         end else begin
@@ -36,14 +50,14 @@ module down_counter(
     end
     
     // Counter logic - Down Counter
-    always @(posedge clk_100ms or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk_100ms or posedge rst_n) begin
+        if (rst_n) begin
             // Initialize to 9999 for down counter
             digit1 <= 9;
             digit2 <= 9;
             digit3 <= 9;
             digit4 <= 9;
-        end else begin
+        end else if (mode_sw) begin  // 스위치가 1일 때만 다운카운터 동작
             // Down counting mode
             if (digit1 == 0) begin
                 digit1 <= 9;
@@ -70,10 +84,8 @@ module down_counter(
     end
     
     // FND display multiplexing - cycles through digits at high frequency
-    reg [16:0] fnd_cnt;
-    
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk or posedge rst_n) begin
+        if (rst_n) begin
             fnd_cnt <= 0;
             digit_sel <= 0;
         end else begin
