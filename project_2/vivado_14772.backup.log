@@ -1,0 +1,98 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Tue Apr  1 16:11:28 2025
+# Process ID: 14772
+# Current directory: C:/Users/kccistc/Desktop/Test by_1/project_2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12000 C:\Users\kccistc\Desktop\Test by_1\project_2\project_2.xpr
+# Log file: C:/Users/kccistc/Desktop/Test by_1/project_2/vivado.log
+# Journal file: C:/Users/kccistc/Desktop/Test by_1/project_2\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.xpr}
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2020.2/data/ip'.
+update_compile_order -fileset sources_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+Command: synth_design -rtl -rtl_skip_mlo -name rtl_1
+Starting synth_design
+Using part: xc7a35tcpg236-1
+Top: top_counter_up_down
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1459.527 ; gain = 251.918
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'top_counter_up_down' [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/updown_counter.v:3]
+INFO: [Synth 8-6157] synthesizing module 'counter_up_down' [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/updown_counter.v:30]
+INFO: [Synth 8-6157] synthesizing module 'clk_div_10hz' [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/updown_counter.v:94]
+INFO: [Synth 8-6155] done synthesizing module 'clk_div_10hz' (1#1) [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/updown_counter.v:94]
+INFO: [Synth 8-6157] synthesizing module 'U_Counter_Up_Down' [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/updown_counter.v:55]
+INFO: [Synth 8-6155] done synthesizing module 'U_Counter_Up_Down' (2#1) [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/updown_counter.v:55]
+INFO: [Synth 8-6155] done synthesizing module 'counter_up_down' (3#1) [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/updown_counter.v:30]
+INFO: [Synth 8-6157] synthesizing module 'fndController' [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:1]
+INFO: [Synth 8-6157] synthesizing module 'clk_div_1khz' [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:54]
+INFO: [Synth 8-6155] done synthesizing module 'clk_div_1khz' (4#1) [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:54]
+INFO: [Synth 8-6157] synthesizing module 'counter_2bit' [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:77]
+INFO: [Synth 8-6155] done synthesizing module 'counter_2bit' (5#1) [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:77]
+INFO: [Synth 8-6157] synthesizing module 'decoder_2x4' [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:96]
+INFO: [Synth 8-226] default block is never used [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:101]
+INFO: [Synth 8-6155] done synthesizing module 'decoder_2x4' (6#1) [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:96]
+INFO: [Synth 8-6157] synthesizing module 'digitsplitter' [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:111]
+INFO: [Synth 8-6155] done synthesizing module 'digitsplitter' (7#1) [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:111]
+INFO: [Synth 8-6157] synthesizing module 'mux_4x1' [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:124]
+INFO: [Synth 8-226] default block is never used [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:133]
+INFO: [Synth 8-6155] done synthesizing module 'mux_4x1' (8#1) [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:124]
+INFO: [Synth 8-6157] synthesizing module 'BCDtoSEG_decoder' [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:143]
+INFO: [Synth 8-226] default block is never used [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:148]
+INFO: [Synth 8-6155] done synthesizing module 'BCDtoSEG_decoder' (9#1) [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:143]
+INFO: [Synth 8-6155] done synthesizing module 'fndController' (10#1) [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/fnd.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'top_counter_up_down' (11#1) [C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.srcs/sources_1/new/updown_counter.v:3]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1517.863 ; gain = 310.254
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1517.863 ; gain = 310.254
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1517.863 ; gain = 310.254
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1517.863 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [D:/XDC/Basys-3-Master.xdc]
+Finished Parsing XDC File [D:/XDC/Basys-3-Master.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1626.914 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+RTL Elaboration Complete:  : Time (s): cpu = 00:00:12 ; elapsed = 00:00:07 . Memory (MB): peak = 1776.414 ; gain = 568.805
+28 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:16 ; elapsed = 00:00:10 . Memory (MB): peak = 1776.414 ; gain = 670.836
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  1 16:12:14 2025] Launched synth_1...
+Run output will be captured here: C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.runs/synth_1/runme.log
+[Tue Apr  1 16:12:14 2025] Launched impl_1...
+Run output will be captured here: C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.runs/impl_1/runme.log
+place_ports {fndcom[0]} B17
+place_ports {fndcom[1]} C15
+startgroup
+set_property package_pin "" [get_ports [list  {fndcom[0]}]]
+place_ports {fndcom[2]} B17
+endgroup
+save_constraints
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue Apr  1 16:14:05 2025...

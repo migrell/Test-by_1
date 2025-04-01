@@ -1,0 +1,48 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Tue Apr  1 16:04:26 2025
+# Process ID: 8520
+# Current directory: C:/Users/kccistc/Desktop/Test by_1/project_2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13524 C:\Users\kccistc\Desktop\Test by_1\project_2\project_2.xpr
+# Log file: C:/Users/kccistc/Desktop/Test by_1/project_2/vivado.log
+# Journal file: C:/Users/kccistc/Desktop/Test by_1/project_2\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/kccistc/Desktop/Test by_1/project_2/project_2.xpr}
+update_compile_order -fileset sources_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+set_property package_pin "" [get_ports [list  {fndcom[3]}]]
+startgroup
+set_property package_pin "" [get_ports [list  {fndFont[4]}]]
+place_ports {fndFont[0]} B2
+endgroup
+place_ports {fndcom[3]} A8
+startgroup
+set_property package_pin "" [get_ports [list  {fndFont[5]}]]
+place_ports {fndFont[1]} B4
+endgroup
+startgroup
+set_property package_pin "" [get_ports [list  {fndFont[6]}]]
+place_ports {fndFont[2]} B6
+endgroup
+startgroup
+set_property package_pin "" [get_ports [list  {fndFont[7]}]]
+place_ports {fndFont[3]} B8
+endgroup
+place_ports {fndFont[4]} B10
+set_property package_pin "" [get_ports [list  {fndFont[5]}]]
+set_property package_pin "" [get_ports [list  {fndFont[6]}]]
+place_ports {fndFont[5]} B13
+place_ports {fndFont[6]} B15
+place_ports {fndFont[7]} B16
+save_constraints
+reset_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+refresh_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+refresh_design
